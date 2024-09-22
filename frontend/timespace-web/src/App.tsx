@@ -51,6 +51,8 @@ const App = () => (
    </QueryClientProvider>
 );
 
+//rednder the query
+
 const SimpleRender = () => {
    const { isPending, error, data } = useQuery({
       queryKey: ["repoData"],
@@ -68,6 +70,7 @@ const SimpleRender = () => {
 
    console.log(data);
 
+   //put the data in calndar view 
    return (
       <div
          style={{
@@ -83,6 +86,7 @@ const SimpleRender = () => {
             <Button onClick={() => setAddModalOpen(true)}>New</Button>
             <Modal open={addModalOpen} onClose={() => setAddModalOpen(false)}>
                <Box
+               
                   sx={{
                      position: "absolute" as "absolute",
                      top: "50%",
@@ -95,13 +99,15 @@ const SimpleRender = () => {
                   }}>
                   New item
                </Box>
+            
             </Modal>
-
+               
             <Calendar data={data} />
          </div>
          <Indigo />
       </div>
    );
+   
 };
 
 export default App;

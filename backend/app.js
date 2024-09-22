@@ -22,6 +22,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
+//gets the users time data
 app.get("/getData", async (req, res) => {
    const timeData = await getTimeData(req.query.userId);
    res.send(timeData);
@@ -32,6 +33,8 @@ app.post("/userOnboard", async (req, res) => {
 });
 
 // TODO: Update system instructions to accept and understand input format
+
+//invokes the chatbot Indigo
 app.get("/invokeIndigo", async (req, res) => {
    const timeData = req.query.timeData || (await getTimeData(req.query.userId));
    runChat({
