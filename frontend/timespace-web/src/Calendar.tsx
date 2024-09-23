@@ -34,6 +34,8 @@ const Calendar = ({ data }: { data: TimeItem[] }) => {
    );
 };
 
+//parsing time data for objects and mapping them to format of title, start, and end
+
 const parseTimeData = (data: TimeItem[]): {} =>
    data.map((item) => ({
       title: item.content.title,

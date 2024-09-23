@@ -11,6 +11,8 @@ import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/ge
 import { apiKey } from "./apiKey.js";
 import chatHistoryV1 from "./indigo-v1-chat-history.json" with { type: "json" };
 
+//Configuring Gemini 1.5 pro as Indigo the chatbot by passing instructions
+
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -21,13 +23,21 @@ const model = genAI.getGenerativeModel({
 });
 
 const generationConfig = {
+    //sets the model to have a balance of determinism and creativity (higher for more creativity)
     temperature: 1,
+
+    //balance of randomness in answer
     topP: 0.95,
     topK: 64,
+
+    //length of answer
     maxOutputTokens: 8192,
+
+    //output of answer
     responseMimeType: "text/plain",
 };
 
+//start chat seession
 export const runChat = async (message) => {
     const chatSession = model.startChat({
         generationConfig,
